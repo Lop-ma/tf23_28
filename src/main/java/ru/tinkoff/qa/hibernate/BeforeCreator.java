@@ -70,46 +70,46 @@ public class BeforeCreator {
                     + "\tCONSTRAINT zoo_animal_fk_2 FOREIGN KEY (workman) REFERENCES public.workman(id)\n"
                     + ");");
             executeUpdate(""
-                    + "INSERT INTO public.places (id, \"row\", place_num, \"name\") VALUES(1, 1, 185, 'Р—Р°РіРѕРЅ 1');\n"
-                    + "INSERT INTO public.places (id, \"row\", place_num, \"name\") VALUES(2, 2, 245, 'Р—Р°РіРѕРЅ 2');\n"
-                    + "INSERT INTO public.places (id, \"row\", place_num, \"name\") VALUES(3, 3, 123, 'Р—Р°РіРѕРЅ 3');\n"
-                    + "INSERT INTO public.places (id, \"row\", place_num, \"name\") VALUES(4, 5, 054, 'Р—Р°РіРѕРЅ 4');\n"
-                    + "INSERT INTO public.places (id, \"row\", place_num, \"name\") VALUES(5, 6, 043, 'Р—Р°РіРѕРЅ 5');");
-            executeUpdate("INSERT INTO public.sex (id, \"name\") VALUES(1, 'РњСѓР¶СЃРєРѕР№');\n"
-                    + "INSERT INTO public.sex (id, \"name\") VALUES(2, 'Р–РµРЅСЃРєРёР№');");
+                    + "INSERT INTO public.places (id, \"row\", place_num, \"name\") VALUES(1, 1, 185, 'Загон 1');\n"
+                    + "INSERT INTO public.places (id, \"row\", place_num, \"name\") VALUES(2, 2, 245, 'Загон 2');\n"
+                    + "INSERT INTO public.places (id, \"row\", place_num, \"name\") VALUES(3, 3, 123, 'Загон 3');\n"
+                    + "INSERT INTO public.places (id, \"row\", place_num, \"name\") VALUES(4, 5, 054, 'Загон 4');\n"
+                    + "INSERT INTO public.places (id, \"row\", place_num, \"name\") VALUES(5, 6, 043, 'Загон 5');");
+            executeUpdate("INSERT INTO public.sex (id, \"name\") VALUES(1, 'Мужской');\n"
+                    + "INSERT INTO public.sex (id, \"name\") VALUES(2, 'Женский');");
             executeUpdate(""
-                    + "INSERT INTO public.\"types\" (id, \"name\") VALUES(1, 'РљРѕС€РєР°');\n"
-                    + "INSERT INTO public.\"types\" (id, \"name\") VALUES(2, 'РЎРѕР±Р°РєР°');\n"
-                    + "INSERT INTO public.\"types\" (id, \"name\") VALUES(3, 'РџСЂРёРјР°С‚');\n"
-                    + "INSERT INTO public.\"types\" (id, \"name\") VALUES(4, 'РџС‚РёС†Р°');\n"
-                    + "INSERT INTO public.\"types\" (id, \"name\") VALUES(5, 'Р С‹Р±Р°');");
+                    + "INSERT INTO public.\"types\" (id, \"name\") VALUES(1, 'Кошка');\n"
+                    + "INSERT INTO public.\"types\" (id, \"name\") VALUES(2, 'Собака');\n"
+                    + "INSERT INTO public.\"types\" (id, \"name\") VALUES(3, 'Примат');\n"
+                    + "INSERT INTO public.\"types\" (id, \"name\") VALUES(4, 'Птица');\n"
+                    + "INSERT INTO public.\"types\" (id, \"name\") VALUES(5, 'Рыба');");
             executeUpdate(""
-                    + "INSERT INTO public.animal (id, \"name\", age, \"type\", sex, place) VALUES(1, 'Р‘СѓСЃРёРЅРєР°', 2, 1, 1, 1);\n"
-                    + "INSERT INTO public.animal (id, \"name\", age, \"type\", sex, place) VALUES(2, 'РџС‡РµР»РєР°', 4, 2, 1, 1);\n"
-                    + "INSERT INTO public.animal (id, \"name\", age, \"type\", sex, place) VALUES(3, 'РРІР°РЅС‹С‡', 5, 2, 1, 2);\n"
-                    + "INSERT INTO public.animal (id, \"name\", age, \"type\", sex, place) VALUES(4, 'РџРѕ', 6, 3, 2, 2);\n"
-                    + "INSERT INTO public.animal (id, \"name\", age, \"type\", sex, place) VALUES(5, 'РђР±СЂРёРєРѕСЃ', 7, 4, 2,3);\n"
-                    + "INSERT INTO public.animal (id, \"name\", age, \"type\", sex, place) VALUES(6, 'РљРµРєСЃ', 3, 5, 2, 4);\n"
-                    + "INSERT INTO public.animal (id, \"name\", age, \"type\", sex, place) VALUES(7, 'РџР»СЋС€Р°', 5, 3, 1, 5);\n"
-                    + "INSERT INTO public.animal (id, \"name\", age, \"type\", sex, place) VALUES(8, 'Р–СѓР»РёРє', 7, 2, 1, 3);\n"
-                    + "INSERT INTO public.animal (id, \"name\", age, \"type\", sex, place) VALUES(9, 'РџРѕРЅС‡РёРє', 4, 1, 1, 2);\n"
-                    + "INSERT INTO public.animal (id, \"name\", age, \"type\", sex, place) VALUES(10, 'РљРѕС‚Р»РµС‚Р°', 5, 2, 1, 4);");
+                    + "INSERT INTO public.animal (id, \"name\", age, \"type\", sex, place) VALUES(1, 'Бусинка', 2, 1, 1, 1);\n"
+                    + "INSERT INTO public.animal (id, \"name\", age, \"type\", sex, place) VALUES(2, 'Пчелка', 4, 2, 1, 1);\n"
+                    + "INSERT INTO public.animal (id, \"name\", age, \"type\", sex, place) VALUES(3, 'Иваныч', 5, 2, 1, 2);\n"
+                    + "INSERT INTO public.animal (id, \"name\", age, \"type\", sex, place) VALUES(4, 'По', 6, 3, 2, 2);\n"
+                    + "INSERT INTO public.animal (id, \"name\", age, \"type\", sex, place) VALUES(5, 'Абрикос', 7, 4, 2,3);\n"
+                    + "INSERT INTO public.animal (id, \"name\", age, \"type\", sex, place) VALUES(6, 'Кекс', 3, 5, 2, 4);\n"
+                    + "INSERT INTO public.animal (id, \"name\", age, \"type\", sex, place) VALUES(7, 'Плюша', 5, 3, 1, 5);\n"
+                    + "INSERT INTO public.animal (id, \"name\", age, \"type\", sex, place) VALUES(8, 'Жулик', 7, 2, 1, 3);\n"
+                    + "INSERT INTO public.animal (id, \"name\", age, \"type\", sex, place) VALUES(9, 'Пончик', 4, 1, 1, 2);\n"
+                    + "INSERT INTO public.animal (id, \"name\", age, \"type\", sex, place) VALUES(10, 'Котлета', 5, 2, 1, 4);");
             executeUpdate(""
-                    + "INSERT INTO public.positions (id, \"name\", salary) VALUES(1, 'РЎС‚Р°СЂС€РёР№ РґРІРѕСЂРЅРёРє', 25000);\n"
-                    + "INSERT INTO public.positions (id, \"name\", salary) VALUES(2, 'Р”РІРѕСЂРЅРёРє', 20000);\n"
-                    + "INSERT INTO public.positions (id, \"name\", salary) VALUES(3, 'РњР»Р°РґС€РёР№ РґРІРѕСЂРЅРёРє', 15000);\n"
-                    + "INSERT INTO public.positions (id, \"name\", salary) VALUES(4, 'РљРѕСЂРјРёР»РµС†', 45000);");
+                    + "INSERT INTO public.positions (id, \"name\", salary) VALUES(1, 'Старший дворник', 25000);\n"
+                    + "INSERT INTO public.positions (id, \"name\", salary) VALUES(2, 'Дворник', 20000);\n"
+                    + "INSERT INTO public.positions (id, \"name\", salary) VALUES(3, 'Младший дворник', 15000);\n"
+                    + "INSERT INTO public.positions (id, \"name\", salary) VALUES(4, 'Кормилец', 45000);");
             executeUpdate(""
-                    + "INSERT INTO public.workman (id, \"name\", age, \"position\") VALUES(1, 'РџРµС‚СЏ', 23, 1);\n"
-                    + "INSERT INTO public.workman (id, \"name\", age, \"position\") VALUES(2, 'Р’Р°СЃСЏ', 34, 2);\n"
-                    + "INSERT INTO public.workman (id, \"name\", age, \"position\") VALUES(3, 'РљРѕР»СЏ', 24, 3);\n"
-                    + "INSERT INTO public.workman (id, \"name\", age, \"position\") VALUES(4, 'РђР»РµРєСЃР°РЅРґСЂ',22, 4);\n"
-                    + "INSERT INTO public.workman (id, \"name\", age, \"position\") VALUES(5, 'Р’РёС‚СЏ', 32, 3);\n"
-                    + "INSERT INTO public.workman (id, \"name\", age, \"position\") VALUES(6, 'РРІР°РЅ', 54, 2);");
+                    + "INSERT INTO public.workman (id, \"name\", age, \"position\") VALUES(1, 'Петя', 23, 1);\n"
+                    + "INSERT INTO public.workman (id, \"name\", age, \"position\") VALUES(2, 'Вася', 34, 2);\n"
+                    + "INSERT INTO public.workman (id, \"name\", age, \"position\") VALUES(3, 'Коля', 24, 3);\n"
+                    + "INSERT INTO public.workman (id, \"name\", age, \"position\") VALUES(4, 'Александр',22, 4);\n"
+                    + "INSERT INTO public.workman (id, \"name\", age, \"position\") VALUES(5, 'Витя', 32, 3);\n"
+                    + "INSERT INTO public.workman (id, \"name\", age, \"position\") VALUES(6, 'Иван', 54, 2);");
             executeUpdate(""
-                    + "INSERT INTO public.zoo (id, \"name\") VALUES(1, 'Р¦РµРЅС‚СЂР°Р»СЊРЅС‹Р№');\n"
-                    + "INSERT INTO public.zoo (id, \"name\") VALUES(2, 'РЎРµРІРµСЂРЅС‹Р№');\n"
-                    + "INSERT INTO public.zoo (id, \"name\") VALUES(3, 'Р—Р°РїР°РґРЅС‹Р№');");
+                    + "INSERT INTO public.zoo (id, \"name\") VALUES(1, 'Центральный');\n"
+                    + "INSERT INTO public.zoo (id, \"name\") VALUES(2, 'Северный');\n"
+                    + "INSERT INTO public.zoo (id, \"name\") VALUES(3, 'Западный');");
             executeUpdate(""
                     + "INSERT INTO public.zoo_animal (zoo_id, animal_id, time_apperance, workman) VALUES(1, 1, null, 1);\n"
                     + "INSERT INTO public.zoo_animal (zoo_id, animal_id, time_apperance, workman) VALUES(2, 2, null, 2);\n"
