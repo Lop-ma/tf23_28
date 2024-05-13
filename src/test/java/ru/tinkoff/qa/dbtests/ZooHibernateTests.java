@@ -1,53 +1,108 @@
 package ru.tinkoff.qa.dbtests;
 
+import org.hibernate.Session;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import ru.tinkoff.qa.hibernate.BeforeCreator;
+import ru.tinkoff.qa.hibernate.HibernateSessionFactoryCreator;
+import ru.tinkoff.qa.hibernate.models.Animal;
+import ru.tinkoff.qa.hibernate.models.Places;
+import ru.tinkoff.qa.hibernate.models.Workman;
+import ru.tinkoff.qa.hibernate.models.Zoo;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class ZooHibernateTests {
 
+    Session session;
     @BeforeAll
     static void init() {
         BeforeCreator.createData();
     }
 
+    @BeforeEach
+    public void beforeEach() {
+        session = HibernateSessionFactoryCreator.createSessionFactory().openSession();
+    }
     /**
-     * Р’ С‚Р°Р±Р»РёС†Рµ public.animal СЂРѕРІРЅРѕ 10 Р·Р°РїРёСЃРµР№
+     * В таблице public.animal ровно 10 записей
      */
     @Test
     public void countRowAnimal() {
-        assert false;
+        long count = session.createQuery("SELECT A.id FROM Animal A", Animal.class).stream().count();
+        Assertions.assertEquals(10, count, "Check count row in public.animal");
     }
 
     /**
-     * Р’ С‚Р°Р±Р»РёС†Сѓ public.animal РЅРµР»СЊР·СЏ РґРѕР±Р°РІРёС‚СЊ СЃС‚СЂРѕРєСѓ СЃ РёРЅРґРµРєСЃРѕРј РѕС‚ 1 РґРѕ 10 РІРєР»СЋС‡РёС‚РµР»СЊРЅРѕ
+     * В таблицу public.animal нельзя добавить строку с индексом от 1 до 10 включительно
      */
-    @Test
-    public void insertIndexAnimal() {
-        assert false;
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10})
+    public void insertIndexAnimal(int id) {
+        session.createQuery("INSERT INTO Animal (id, name, age, type, sex, place) " +
+                "VALUES (" + id + ", \"Name\", 5, 2, 1, null)");
+        String expectedName = session.find(Animal.class, id).getName();
+        Assertions.assertNotEquals("Name", expectedName, "Check insert animal with id = " + id);
     }
 
     /**
-     * Р’ С‚Р°Р±Р»РёС†Сѓ public.workman РЅРµР»СЊР·СЏ РґРѕР±Р°РІРёС‚СЊ СЃС‚СЂРѕРєСѓ СЃ name = null
+     * В таблицу public.workman нельзя добавить строку с name = null
      */
     @Test
     public void insertNullToWorkman() {
-        assert false;
+        Workman workman = new Workman();
+        workman.setId(99);
+        workman.setName(null);
+        workman.setAge(37);
+        workman.setPositions(3);
+        Assertions.assertThrows(jakarta.persistence.PersistenceException.class,
+                () -> session.persist(workman),
+                "Check insert workman with name = null");
     }
 
     /**
-     * Р•СЃР»Рё РІ С‚Р°Р±Р»РёС†Сѓ public.places РґРѕР±Р°РІРёС‚СЊ РµС‰Рµ РѕРґРЅСѓ СЃС‚СЂРѕРєСѓ, С‚Рѕ РІ РЅРµР№ Р±СѓРґРµС‚ 6 СЃС‚СЂРѕРє
+     * Если в таблицу public.places добавить еще одну строку, то в ней будет 6 строк
      */
     @Test
     public void insertPlacesCountRow() {
-        assert false;
+        Places place = new Places();
+        place.setId(6);
+        place.setRow(3);
+        place.setPlaceNum(345);
+        place.setName("Загон 6");
+        session.beginTransaction();
+        session.persist(place);
+        session.getTransaction().commit();
+        long count = session.createQuery("SELECT P.id FROM Places P", Places.class).stream().count();
+        Assertions.assertEquals(6, count, "Check count rows in public.places after add one row");
     }
 
     /**
-     * Р’ С‚Р°Р±Р»РёС†Рµ public.zoo РІСЃРµРіРѕ С‚СЂРё Р·Р°РїРёСЃРё СЃ name 'Р¦РµРЅС‚СЂР°Р»СЊРЅС‹Р№', 'РЎРµРІРµСЂРЅС‹Р№', 'Р—Р°РїР°РґРЅС‹Р№'
+     * В таблице public.zoo всего три записи с name 'Центральный', 'Северный', 'Западный'
      */
     @Test
     public void countRowZoo() {
-        assert false;
+        Set<String> expectedZoo = new HashSet<>();
+        expectedZoo.add("Центральный");
+        expectedZoo.add("Северный");
+        expectedZoo.add("Западный");
+
+        Set<String> actualZoo = new HashSet<>();
+        List<Zoo> nameZoo = session.createQuery("FROM Zoo Z", Zoo.class).list();
+        for (Zoo zoo : nameZoo) {
+            actualZoo.add(zoo.getName());
+        }
+        Assertions.assertEquals(expectedZoo, actualZoo, "Check count and names zoo");
+    }
+    @AfterEach
+    public void afterEach() {
+        session.close();
     }
 }
